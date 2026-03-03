@@ -1,1 +1,29 @@
-<p>user-detail works!</p>
+<button [routerLink]='["/users"]'>Go back</button>
+<h1>User details</h1>
+
+@if(isLoading){
+
+  <p>Loading...</p>
+
+}@else{
+
+ @if (user){
+
+  <h2>Name: </h2>
+  <p>{{ user.name }}</p>
+  <h2>Email: </h2>
+  <p>{{ user.email }}</p>
+  <h3>Username: </h3>
+  <p>{{ user.username }}</p>
+  <h3>Phone: </h3>
+  <p>{{ user.phone }}</p>
+  <h3>City: </h3>
+  <p>{{ user.address.city }}</p>
+  <h3>Company name: </h3>
+  <p>{{ user.company.name }}</p>
+
+  }@else{
+
+    <p>Error! This user does not exist :/</p>
+  }
+}

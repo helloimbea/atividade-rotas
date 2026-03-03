@@ -35,3 +35,18 @@ this.userService.getUsers().subscribe(data => {
   this.users = data;
 });
 ```
+### Uso do paramMap
+
+```
+  ngOnInit() {
+    const id = this.activateRoute.snapshot.paramMap.get('id')
+    if(id){
+    this.userService.userById(parseInt(id)).subscribe((user) => {
+      this.user = user;
+      this.isLoading = false
+      this.cdr.detectChanges();
+    });
+    }
+
+  }
+  ```
