@@ -2,11 +2,12 @@
 Nessa atividade desenvolvi uma aplicação do 0 em Angular baseada no passo-a-passo dado pelo professor Marcelo.
 ## O que eu fiz nesse projeto?
 Criei duas páginas, uma chamada **user-list** e outra chamada **user-detail**, um service e uma interface "user" baseada na API pública 'https://jsonplaceholder.typicode.com/users'.
-### Observable
+### Uso do Observable
 Primeiramente, o que é o Observable?
 > No Angular, o Observable representa um fluxo de dados assíncrono. Ele é usado principalmente para lidar com operações que não retornam imediatamente, como requisições HTTP.
 Então
 > Quando usamos o HttpClient, ele retorna um Observable porque a requisição pode demorar. O Observable só executa quando alguém se inscreve nele através do subscribe.
+
 Nesse código extraído do **user.service.ts** fiz o uso do observable
 ```
 export class UserService {
