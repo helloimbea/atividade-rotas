@@ -9,8 +9,7 @@ O site consiste em uma lista com nomes e dados de email e cidade de usuários ex
 - Criei informações de carregamento e erro
 
 ## Rota dinâmica
-Essa atividade usa uma rota dinâmica: /details/:id
-Que fica
+Essa atividade usa uma rota dinâmica: /details/:id, que fica
 ```
 http://localhost:4200/details/2
 ```
