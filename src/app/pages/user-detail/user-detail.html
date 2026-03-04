@@ -1,5 +1,7 @@
 <section class="title">
-<button [routerLink]='["/users"]' class="button-back">Go back</button>
+<button [routerLink]='["/users"]' class="button-back"> <span class="material-symbols-outlined">
+arrow_back_ios
+</span> Go back</button>
 <h1>User details</h1>
 </section>
 
@@ -12,52 +14,51 @@
   </div>
   </section>
 
-}@else{
+  }@else if(errorMessage){
 
- @if (user){
+  <section class="error-section">
+      <div class="error">
+      <p>{{ errorMessage }}</p>
+      </div>
+    </section>
+
+  }@else{
 
   <section class="container">
 
-  <section class="section-name">
+  <section class="section-info">
   <h2>Name: </h2>
   <p>{{ user.name }}</p>
   </section>
 
-  <section class="section-email">
+  <section class="section-info">
   <h2>Email: </h2>
   <p>{{ user.email }}</p>
   </section>
 
   <hr>
 
-  <section class="section-username">
+  <section class="section-info">
   <h3>Username: </h3>
   <p>{{ user.username }}</p>
     </section>
 
-  <section class="section-phone">
+  <section class="section-info">
   <h3>Phone: </h3>
   <p>{{ user.phone }}</p>
   </section>
 
-   <section class="section-city">
+   <section class="section-info">
   <h3>City: </h3>
   <p>{{ user.address.city }}</p>
   </section>
 
-  <section class="section-company">
+  <section class="section-info">
   <h3>Company name: </h3>
   <p>{{ user.company.name }}</p>
   </section>
 
   </section>
-  }@else{
+  }
 
-    <section class="error-section">
-      <div class="error">
-      <p>Oops! This user does not exist :/</p>
-      </div>
-    </section>
-    }
-}
 </section>

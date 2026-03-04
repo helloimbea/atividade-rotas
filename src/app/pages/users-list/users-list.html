@@ -4,7 +4,13 @@
 
 <section class="container">
 @if(isLoading){
-<p>Loading...</p>
+
+  <section class="loading-section">
+  <div  class="loading">
+  <p>Loading...</p>
+  </div>
+  </section>
+
 }@else {
   @for (user of users; track user.id){
   <section class="users">
@@ -20,7 +26,10 @@
   </li>
    </ul>
    <section class="button-details">
-   <button class="details" [routerLink]="['/details', user.id]">Details</button>
+   <button class="details" [routerLink]="['/details', user.id]"><span class="material-symbols-outlined">
+    data_check
+    </span>Details
+</button>
    </section>
   </section>
   }

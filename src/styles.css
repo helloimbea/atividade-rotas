@@ -4,3 +4,15 @@ body{
   font-family: 'Quicksand';
   margin: 0;
 }
+
+.loading-section{
+  display: flex;
+  justify-content: center;
+}
+.loading{
+  background-color: #C9BEFF;
+  box-shadow: 2px 10px 10px #6367FF;
+  padding: 20px;
+  border-radius: 5px;
+  width: 200px;
+}

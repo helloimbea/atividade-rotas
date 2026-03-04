@@ -23,16 +23,25 @@ export class UserDetail implements OnInit{
 
 user!: User;
 isLoading = true;
+errorMessage: string = '';
 
-  ngOnInit() {
-    const id = this.activateRoute.snapshot.paramMap.get('id')
-    if(id){
-    this.userService.userById(parseInt(id)).subscribe((user) => {
-      this.user = user;
-      this.isLoading = false
-      this.cdr.detectChanges();
+ngOnInit() {
+  const id = this.activateRoute.snapshot.paramMap.get('id');
+
+  if (id) {
+    this.userService.userById(parseInt(id)).subscribe({
+      next: (user) => {
+        this.user = user;
+        this.isLoading = false;
+        this.cdr.detectChanges();
+      },
+       error: (err) => {
+        this.isLoading = false;
+        this.errorMessage = "Oops! Can't find this user :/";
+        this.cdr.detectChanges();
+       }
     });
-    }
 
   }
+}
 }
