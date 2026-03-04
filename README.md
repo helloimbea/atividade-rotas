@@ -1,5 +1,5 @@
 # ATIVIDADE ANGULAR!
-Nessa atividade desenvolvi uma aplicação do zero em Angular baseada no passo-a-passo dado pelo professor Marcelo.
+Nessa atividade desenvolvi uma aplicação do zero em Angular baseada no passo-a-passo dado pelo professor Marcelo.  
 O site consiste em uma lista com nomes e dados de email e cidade de usuários extraidos de uma API púplica. Cada usuário tem um botão que abre outra sessão com mais detalhes do usuário.
 ## O que eu fiz nesse projeto?
 - Criei duas páginas, uma chamada **user-list** e outra chamada **user-detail**, um service e uma interface "user" baseada na API pública 'https://jsonplaceholder.typicode.com/users'
@@ -9,20 +9,21 @@ O site consiste em uma lista com nomes e dados de email e cidade de usuários ex
 - Criei informações de carregamento e erro
 
 ## Rota dinâmica
-Essa atividade usa uma rota dinâmica: /details/:id, que fica
+Essa atividade usa uma rota dinâmica: /details/:id  
+Que fica
 ```
 http://localhost:4200/details/2
 ```
-Ou seja, uma rota dinâmica é uma URL que tem uma parte variável, nesse caso o **id**.
-O uso da rota dinâmica foi muito importante para passar o id de um componente pro outro, permitindo encontrar dados do usuário selecionado.
+Ou seja, uma rota dinâmica é uma URL que tem uma parte variável, nesse caso o **id**.  
+O uso da rota dinâmica foi muito importante para passar o id de um componente pro outro, permitindo encontrar dados do usuário selecionado.  
 ### Uso do paramMap
 O que é o _paramMap_?
 > [!IMPORTANT]
 >O paramMap é um objeto que permite acessar os parâmetros definidos na rota (como :id).
-Ele lê os valores que estão na URL e permite que o componente utilize esses valores para buscar dados ou executar alguma lógica.
-Nesse caso, usa o id pra buscar as informações do usuário pra depois carregar na tela o nome, email etc.
+Ele lê os valores que estão na URL e permite que o componente utilize esses valores para buscar dados ou executar alguma lógica.  
+Nesse caso, usa o id pra buscar as informações do usuário pra depois carregar na tela o nome, email etc.  
 
-Nesse código do **user-detail.ts** eu uso o paramMap pra pegar o id da rota que o **user-list** passou.
+Nesse código do **user-detail.ts** eu uso o paramMap pra pegar o id da rota que o **user-list** passou.  
 ```
   ngOnInit() {
     const id = this.activateRoute.snapshot.paramMap.get('id') //cria a const id e diz que ela vai ter o valor do id que está na rota.
@@ -63,7 +64,7 @@ export class UserService {
 
   }
 ```
-Aqui o método retorna um Observable tipado como User[]. Isso significa que ele ainda não contém os dados, mas vai emitir uma lista de usuários quando a requisição HTTP for concluída.
+Aqui o método retorna um Observable tipado como User[]. Isso significa que ele ainda não contém os dados, mas vai emitir uma lista de usuários quando a requisição HTTP for concluída.  
 O subscribe é necessário porque o Observable é "lazy", ou seja, ele só executa quando alguém se inscreve. Nesse momento, quando a API responde, o Observable emite os dados e o callback do subscribe é executado.
 ```
 this.userService.getUsers().subscribe(data => {
@@ -72,7 +73,11 @@ this.userService.getUsers().subscribe(data => {
 ```
 
 ## Considerações finais
-Gostei muito desse projeto, por a mão na massa realmente me ajudou a entender melhor os conceitos do angular e como fazer uma boa página do zero.
-A versão atual está assim:
-![Screenshot of the final site](/src/img/print-site-details.png)
+Gostei muito desse projeto, por a mão na massa realmente me ajudou a entender melhor os conceitos do angular e como fazer uma boa página do zero.  
+Fiquei bem satisfeita com o resultado final e o processo todo foi muito gostoso!  
+A versão atual está assim:  
+### Tela principal de users
 ![Screenshot of the final site](/src/img/print-site-users.png)
+### Tela de detalhes do usuário
+![Screenshot of the final site](/src/img/print-site-details.png)
+
