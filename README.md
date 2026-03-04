@@ -1,6 +1,6 @@
 # ATIVIDADE ANGULAR!
 Nessa atividade desenvolvi uma aplicação do zero em Angular baseada no passo-a-passo dado pelo professor Marcelo.  
-O site consiste em uma lista com nomes e dados de email e cidade de usuários extraidos de uma API púplica. Cada usuário tem um botão que abre outra sessão com mais detalhes do usuário.
+O site consiste em uma lista com nomes e dados de email e cidade de usuários extraidos de uma API púplica. Cada usuário tem um botão que abre outra seção com mais detalhes do usuário.
 ## O que eu fiz nesse projeto?
 - Criei duas páginas, uma chamada **user-list** e outra chamada **user-detail**, um service e uma interface "user" baseada na API pública 'https://jsonplaceholder.typicode.com/users'
 - Botão para ver detalhes do user
@@ -77,7 +77,7 @@ this.userService.getUsers().subscribe(data => {
 ```
 
 ## Considerações finais
-Gostei muito desse projeto, por a mão na massa realmente me ajudou a entender melhor os conceitos do angular e como fazer uma boa página do zero.  
+Gostei muito desse projeto, por a mão na massa realmente me ajudou a entender melhor os conceitos do Angular e como fazer uma boa página do zero.  
 Fiquei bem satisfeita com o resultado final e o processo todo foi muito gostoso!  
 A versão atual está assim:  
 ### Tela principal de users
