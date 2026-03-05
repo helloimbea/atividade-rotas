@@ -4,7 +4,7 @@
   align-items: center;
   padding: 20px;
   box-shadow: 2px 10px 10px #6367FF;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 
 }
 
@@ -93,4 +93,29 @@ hr {
 .error p{
   font-size: 20px;
   color: #5257e2;
+}
+
+.navigate-buttons{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  gap: 100px;
+}
+
+.previous-arrow, .next-arrow{
+  background-color: #c4c6fd;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+
+}
+
+.disabled{
+  background-color: #c4c6fd;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor:none;
+
 }

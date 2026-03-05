@@ -25,23 +25,51 @@ user!: User;
 isLoading = true;
 errorMessage: string = '';
 
+currentId!: number;
+maxId = 10; // depende da sua API
+
 ngOnInit() {
-  const id = this.activateRoute.snapshot.paramMap.get('id');
+  this.activateRoute.paramMap.subscribe(params => {
 
-  if (id) {
-    this.userService.userById((+id)).subscribe({
-      next: (user) => {
-        this.user = user;
-        this.isLoading = false;
-        this.cdr.detectChanges();
-      },
-       error: (err) => {
-        this.isLoading = false;
-        this.errorMessage = "Oops! Can't find this user :/";
-        this.cdr.detectChanges();
-       }
-    });
+    const id = params.get('id');
 
-  }
+    if (id) {
+      this.currentId = +id;
+      this.loadUser();
+      this.cdr.detectChanges();
+    }
+
+  });
+}
+
+loadUser(){
+  this.isLoading = true;
+  this.errorMessage = '';
+
+  this.userService.userById(this.currentId).subscribe({
+    next: (user) => {
+      this.user = user;
+      this.isLoading = false;
+      this.cdr.detectChanges();
+    },
+    error: () => {
+      this.isLoading = false;
+      this.errorMessage = "Oops! Can't find this user :/";
+      this.cdr.detectChanges();
+    }
+  });
+}
+
+
+nextProfile() {
+  if (this.currentId < this.maxId) {
+    this.router.navigate(['/details', this.currentId + 1]);
+
+}
+}
+previousProfile() {
+  if (this.currentId > 1) {
+    this.router.navigate(['/details', this.currentId - 1]);
+}
 }
 }

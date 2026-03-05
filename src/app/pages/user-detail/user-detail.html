@@ -4,7 +4,14 @@ arrow_back_ios
 </span> Go back</button>
 <h1>User details</h1>
 </section>
-
+    <section class="navigate-buttons">
+    <button class="previous-arrow" (click)="previousProfile()" [disabled]="currentId === 1"><span class="material-symbols-outlined">
+    arrow_back
+    </span></button>
+        <button class="next-arrow" (click)="nextProfile()" [disabled]="currentId === maxId" ><span class="material-symbols-outlined">
+      arrow_forward
+    </span></button>
+    </section>
 <section>
 @if(isLoading){
 
@@ -24,7 +31,8 @@ arrow_back_ios
 
   }@else{
 
-  <section class="container">
+
+      <section class="container">
     <div class="img-div">
       <img src="/assets/user.png" class="user-img">
     </div>
