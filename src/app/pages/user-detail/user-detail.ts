@@ -29,7 +29,7 @@ ngOnInit() {
   const id = this.activateRoute.snapshot.paramMap.get('id');
 
   if (id) {
-    this.userService.userById(parseInt(id)).subscribe({
+    this.userService.userById((+id)).subscribe({
       next: (user) => {
         this.user = user;
         this.isLoading = false;

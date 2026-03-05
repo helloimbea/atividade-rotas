@@ -26,9 +26,13 @@
   @for (user of filteredUsers; track user.id){
 
   <section class="users">
+    <div>
+      <img src="/assets/user.png" class="user-img">
+    </div>
+    <div class="user-div">
     <ul class="list">
   <li class="name">
-    <span>Name:</span> {{ user.name }}
+    <span>{{ user.name }}</span>
   </li>
   <li class="email">
      <span>Email:</span> {{ user.email }}
@@ -42,7 +46,9 @@
     data_check
     </span>Details
 </button>
+
    </section>
+   </div>
   </section>
   }
   }
