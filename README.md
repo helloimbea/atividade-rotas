@@ -1,4 +1,4 @@
-# ATIVIDADE ANGULAR!
+# Atividade guiada Angular - site com lista de users e detalhes 💻
 Nessa atividade desenvolvi uma aplicação do zero em Angular baseada no passo-a-passo dado pelo professor Marcelo.  
 O site consiste em uma lista com nomes e dados de email e cidade de usuários extraidos de uma API púplica. Cada usuário tem um botão que abre outra seção com mais detalhes do usuário.
 ## O que eu fiz nesse projeto?
