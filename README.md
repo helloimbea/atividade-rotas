@@ -1,90 +1,186 @@
-# Atividade guiada Angular - site com lista de users e detalhes 💻
-Nessa atividade desenvolvi uma aplicação do zero em Angular baseada no passo-a-passo dado pelo professor Marcelo.  
-O site consiste em uma lista com nomes e dados de email e cidade de usuários extraidos de uma API púplica. Cada usuário tem um botão que abre outra seção com mais detalhes do usuário.
-## O que eu fiz nesse projeto?
-- Criei duas páginas, uma chamada **user-list** e outra chamada **user-detail**, um service e uma interface "user" baseada na API pública `https://jsonplaceholder.typicode.com/users`
-- Botão para ver detalhes do user
-- Criei rotas para /detail, /detail/:id (tela de detalhes do usuário com id carregado), /users (tela de lista com todos os usuários)
-- Usei paramMap para capturar o id na rota /details/:id
-- Criei informações de carregamento e erro
-- Inseri ícones personalizados e mudei o icon do site
-- Criei uma search box na tela de lista de usuários, que filtra pelo nome
-- Adicionei imagens placeholder de perfil para os usuários
-- Adicionei setas de navegação entre usuários na tela de detalhes
+# 👥 User List & Details
 
-## Rota dinâmica
-Essa atividade usa uma rota dinâmica: /details/:id  
-Que fica
+An Angular application that displays a list of users retrieved from a public API and allows navigation to a detailed page for each user.
+
+This project was developed during the **Front-end classes at Bosch**, taught by **Marcelo Petri**.
+
+---
+
+## 📖 About
+
+The application consumes the **JSONPlaceholder API** to display user information, including names, email addresses, and cities. Selecting a user opens a dedicated page with additional details through dynamic routing.
+
+---
+
+## ✨ Features
+
+- Display users from a public API
+- User details page
+- Dynamic routing
+- Search users by name
+- Loading and error states
+- Placeholder profile images
+- Previous/Next user navigation
+- Custom icons and favicon
+
+---
+
+## 📸 Preview
+
+### User List
+
+![User List](src/img/print-site-users.png)
+
+### User Details
+
+![User Details](src/img/print-site-details.png)
+
+---
+
+## 🛠 Technologies
+
+- Angular
+- TypeScript
+- HTML5
+- CSS3
+- RxJS
+- JSONPlaceholder API
+
+---
+
+## 🌐 API Used
+
+### JSONPlaceholder
+
+https://jsonplaceholder.typicode.com/users
+
+---
+
+## 🚀 Running the Project
+
+Clone the repository:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/REPOSITORY_NAME.git
+```
+
+Install the dependencies:
+
+```bash
+npm install
+```
+
+Run the application:
+
+```bash
+ng serve
+```
+
+Open:
+
+```
+http://localhost:4200
+```
+
+---
+
+## 📚 What I Learned
+
+During this project I practiced:
+
+- Angular routing
+- Dynamic routes
+- Route parameters
+- Services
+- HttpClient
+- Observables
+- Component communication
+- Search filtering
+- Loading and error handling
+- TypeScript interfaces
+
+---
+
+## 👨‍💻 Author
+
+Developed by **Beatriz Heimann**.
+
+Guided activity developed during the **Front-end classes at Bosch**.
+
+# 📖 Detailed Documentation
+
+<details>
+<summary>Click to expand the implementation details</summary>
+
+## Dynamic Routing
+
+The application uses Angular's dynamic routing feature through the route:
+
+```
+/details/:id
+```
+
+Example:
+
 ```
 http://localhost:4200/details/2
 ```
-Ou seja, uma rota dinâmica é uma URL que tem uma parte variável, nesse caso o **id**.  
-O uso da rota dinâmica foi muito importante para passar o id de um componente pro outro, permitindo encontrar dados do usuário selecionado.  
-### Uso do paramMap
-O que é o _paramMap_?
-> [!IMPORTANT]
->O paramMap é um objeto que permite acessar os parâmetros definidos na rota (como :id).
-Ele lê os valores que estão na URL e permite que o componente utilize esses valores para buscar dados ou executar alguma lógica.  
-Nesse caso, usa o id pra buscar as informações do usuário pra depois carregar na tela o nome, email etc.  
 
-Nesse código do **user-detail.ts** eu uso o paramMap pra pegar o id da rota que o **user-list** passou.  
-```
-  ngOnInit() {
-    const id = this.activateRoute.snapshot.paramMap.get('id') //cria a const id e diz que ela vai ter o valor do id que está na rota.
-    if(id){ //se encontrou um id, requisita as informações daquele id
-    this.userService.userById(parseInt(id)).subscribe((user) => {
+The `:id` parameter allows the application to identify which user should be displayed on the details page.
+
+---
+
+## Using paramMap
+
+Angular's `paramMap` provides access to route parameters.
+
+In the `UserDetailComponent`, the `id` parameter is retrieved from the URL and used to request the selected user's information.
+
+```ts
+ngOnInit() {
+  const id = this.activatedRoute.snapshot.paramMap.get('id');
+
+  if (id) {
+    this.userService.userById(Number(id)).subscribe(user => {
       this.user = user;
-      this.isLoading = false
+      this.isLoading = false;
       this.cdr.detectChanges();
     });
-    }
-
-  }
-  ```
-
-### Uso do Observable
-Primeiramente, o que é o Observable?
-> No Angular, o Observable representa um fluxo de dados assíncrono. Ele é usado principalmente para lidar com operações que não retornam imediatamente, como requisições HTTP.
-Então
-> Quando usamos o HttpClient, ele retorna um Observable porque a requisição pode demorar. O Observable só executa quando alguém se inscreve nele através do subscribe.
-
-Nesses dois códigos extraído do **user.service.ts** fiz o uso do observable
-```
-export class UserService {
-
-  private apiUrl = 'https://jsonplaceholder.typicode.com/users';
-
-  constructor(private http: HttpClient) {}
-
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.apiUrl);
   }
 }
 ```
-Aqui o método retorna um Observable tipado como User[]. Isso significa que ele ainda não contém os dados, mas vai emitir uma lista de usuários quando a requisição HTTP for concluída.  
-O subscribe é necessário porque o Observable é "lazy", ou seja, ele só executa quando alguém se inscreve. Nesse momento, quando a API responde, o Observable emite os dados e o callback do subscribe é executado.  
-Outro lugar que usei o Observable foi no método **userById**  
-O método envia uma requisição, como esse dado não é imediato, usamos Observable, quando tiver resposta ele envia os dados, e o subscribe pede pro Observalbe avisar ele quando chegar.
-```
-    userById(id: number): Observable<User>{
 
-    return this.http.get<User>(this.apiUrl)
+---
 
-  }
+## Using Observables
+
+Angular's `HttpClient` returns **Observables**, which represent asynchronous streams of data.
+
+The requests are only executed when `subscribe()` is called.
+
+Example:
+
+```ts
+getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.apiUrl);
+}
 ```
-Exemblo de **subscribe**:  
-```
-this.userService.getUsers().subscribe(data => {
-  this.users = data;
+
+When another component subscribes to this Observable, the HTTP request is executed and the received users are returned.
+
+```ts
+this.userService.getUsers().subscribe(users => {
+    this.users = users;
 });
 ```
 
-## Considerações finais
-Gostei muito desse projeto, por a mão na massa realmente me ajudou a entender melhor os conceitos do Angular e como fazer uma boa página do zero.  
-Fiquei bem satisfeita com o resultado final e o processo todo foi muito gostoso!  
-A versão atual está assim:  
-### Tela principal de users
-![Screenshot of the final site](/src/img/print-site-users.png)
-### Tela de detalhes do usuário id 3
-![Screenshot of the final site](/src/img/print-site-details.png)
+The same approach is used to retrieve a single user by their ID.
 
+---
+
+## Final Thoughts
+
+This project strengthened my understanding of Angular fundamentals, especially routing, services, Observables, HTTP requests, and component organization.
+
+Building the application from scratch also gave me practical experience with TypeScript, reusable components, and creating a more polished user interface.
+</details>
